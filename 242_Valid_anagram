@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+bool isAnagram(char *s, char *t) {
+    
+    // Step 1: Check if lengths are different
+    if (strlen(s) != strlen(t))
+        return false;
+
+    int count[26] = {0};
+
+    // Step 2: Count characters in s
+    for (int i = 0; s[i] != '\0'; i++) {
+        count[s[i] - 'a']++;
+    }
+
+    // Step 3: Subtract characters using t
+    for (int i = 0; t[i] != '\0'; i++) {
+        count[t[i] - 'a']--;
+    }
+
+    // Step 4: Check if all counts are zero
+    for (int i = 0; i < 26; i++) {
+        if (count[i] != 0)
+            return false;
+    }
+
+    return true;
+}
